@@ -15,6 +15,16 @@ headers = {
     "Accept": "application/vnd.github.v3+json"
 }
 
+# Test API request to check if token is valid
+response = requests.get(f"{GITHUB_API_URL}/user", headers=headers)
+
+if response.status_code == 200:
+    print("Token is valid. Response received:")
+    print(response.json())
+else:
+    print(f"Token is invalid. Status code: {response.status_code}")
+    print(response.json())
+    
 # Step 1: Get repositories starting with "wcm-tango" - You can interchange with whatever repo detials you would like
 def get_repositories(org_name):
     url = f"{GITHUB_API_URL}/orgs/{org_name}/repos"
